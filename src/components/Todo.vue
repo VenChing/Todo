@@ -5,7 +5,7 @@
         <section>
           <form id="form">
             <label for="titile">待办事项</label>
-            <!-- input输入框绑定todo时间，keydown的值为13即是回车，占位符，必填项 记录输入值-->
+           
               <input type="text" v-model="todo" @keydown.13="Enter" placeholder="添加事项" required="required" autocomplete="off">
           </form>
         </section>
@@ -14,13 +14,13 @@
       <section class="sccs">
         <h2>进行事项</h2>
         <ol>
-          <!-- 循环遍历list 对象index 数组key，如果CheckBox没打勾 -->
+        
           <li v-for="(item, index) in list" :key="index" v-if="!item.checked">
-            <!-- 双向绑定事件 @change绑定h5储存-->
+           
             <input type="checkbox" v-model="item.checked" @change="saveList()"> 
                  {{item.title}} 
             <input type="button" value="删除" @click="del(index)">
-            <!-- index索引删除与编辑 -->
+            
             <input type="button" value="编辑" @click="edit(index)">
           </li>
 
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods:{
-    //增
+   
     Enter(){
         if(this.todo !=""){
             this.list.push({
@@ -73,7 +73,7 @@ export default {
         this.todo=''
         storage.set('list',this.list);
     },
-    //删
+  
     del(key){
       this.$confirm('你真的不要小可爱了吗？', '提示', {
           confirmButtonText: '确定',
@@ -95,7 +95,7 @@ export default {
     },saveList(){
       storage.set('list',this.list);
     },
-    //改
+    
     edit(index) {
       this.$prompt('你需要咋样修改呢？', '提示', {
           confirmButtonText: '确定',
